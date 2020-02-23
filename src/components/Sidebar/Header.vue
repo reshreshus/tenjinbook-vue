@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h2> Tenjin Book</h2>
+    <div className="header">
+        <h1> Tenjin Book</h1>
     </div>
 </template>
 
