@@ -1,7 +1,7 @@
 <template>
     <div className="tree">
         <div v-bind:key="itemId" v-for="itemId in root.children">
-            <Item v-bind:treeItem="tree.items[itemId]" />
+            <Item v-bind:treeItem="tree.items[itemId]" v-bind:tree="tree"/>
         </div>
     </div>
 </template>
