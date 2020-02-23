@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <Sidebar /> 
-      {{items}}
+      <!-- {{items}} -->
   </div>
 </template>
 
 <script>
-import {items} from './data';
+// import {items} from './data';
 import Sidebar from './components/Sidebar/Sidebar';
 export default {
   name: 'App',
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      items
+      // items
     }
   }
 }

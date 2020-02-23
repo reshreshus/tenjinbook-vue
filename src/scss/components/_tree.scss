@@ -4,8 +4,12 @@
 .tree-item {
     position: relative;
     
-    * {         
+    * {
         text-overflow: ellipsis;
+    }
+
+    &__children {
+        margin-left: 1rem;
     }
    
     &__inline {
