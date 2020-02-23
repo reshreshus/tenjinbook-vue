@@ -1,6 +1,6 @@
 <template>
     <div className="tree">
-        <div v-bind:key="itemId" v-for="itemId in root.children">
+        <div v-bind:key="itemId" v-for="itemId in tree.items[tree.rootId].children">
             <Item v-bind:treeItem="tree.items[itemId]" v-bind:tree="tree"/>
         </div>
     </div>
@@ -8,23 +8,25 @@
 
 <script>
 import Item from './Item'
-import {items, tree} from '../../data';
-
+import { mapGetters } from 'vuex';
 export default {
     name: "Items",
     components: {
         Item
     },
     data() {
-        let root = tree.items[tree.rootId];
+        console.log("data tree", this.tree)
+        let root = this.tree.items[this.tree.rootId];
         return {
-            items,
-            tree,
             root
         }
     },
+    computed: mapGetters(["tree"]),
     methods: {
         
+    },
+    created() {
+        console.log("created tree", this.tree)
     }
 }
 </script>

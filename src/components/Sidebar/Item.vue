@@ -51,7 +51,7 @@ export default {
             this.treeItem.isExpanded = !this.treeItem.isExpanded;
         },
         onTreeItemKeyDown() {
-
+            
         },
         onContextMenu(e) {
             e.preventDefault();
