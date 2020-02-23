@@ -12,7 +12,7 @@
             'tree-item__type--active': contextTreeItem && treeItem.id === contextTreeItem.id}" >
                 [{{ treeItem.data.type }}]
             </span>
-            <div class="tree-item__name"
+            <div tabindex="0" class="tree-item__name"
                 @keydown="onTreeItemKeyDown"
                 @contextmenu="onContextMenu"
                 @click="updateContextTreeItem(treeItem)"
@@ -46,12 +46,16 @@ export default {
         console.log("contextTreeItem", this.contextTreeItem);
     },
     methods: {
-        ...mapActions(['updateContextTreeItem']),
+        ...mapActions(['updateContextTreeItem', 'deleteEntry']),
         toggleExpanded() {
             this.treeItem.isExpanded = !this.treeItem.isExpanded;
         },
-        onTreeItemKeyDown() {
-            
+        onTreeItemKeyDown(e) {
+            console.log({e})
+            if (e.key === 'Delete') {
+                e.preventDefault();
+                this.deleteEntry(this.treeItem.id);
+            }
         },
         onContextMenu(e) {
             e.preventDefault();

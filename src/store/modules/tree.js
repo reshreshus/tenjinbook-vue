@@ -1,18 +1,33 @@
-
+// import {getContextMutations} from '../../components/functional/contextMutations';
 const getters = {
     tree: (state) => state.tree,
-    contextTreeItem: (state) => state.contextTreeItem,
+    contextTreeItem: (state) => state.contextTreeItem
 };
 
 const actions = {
   updateContextTreeItem: ( { commit }, treeItem) => {
     console.log("updateContextTreeItem")
     commit('updateContextTreeItem', treeItem);
+  },
+  deleteEntry: ( {commit }, treeItemId) => {
+    console.log("deleteEntry")
+    commit('deleteEntry', treeItemId)
   }
 };
 
 const mutations = {
   updateContextTreeItem: (state, treeItem) => state.contextTreeItem = treeItem,
+  deleteEntry: (state, treeItemId) => {
+    const tree = state.tree;
+    let parentId =  tree.items[treeItemId].parentId;
+    delete tree.items[treeItemId];
+    let parent = tree.items[parentId];
+    let idx = parent.children.indexOf(treeItemId);
+    parent.children.splice(idx, 1);
+    if (parent.children.length === 0) {
+      parent.hasChildren = false;
+    }
+  }
 };
 
 const state = {
