@@ -14,16 +14,10 @@
             </span>
             <div class="tree-item__name"
                 @keydown="onTreeItemKeyDown"
-                @contextmenu="onContextMenu">
-                    <!-- <ContentEditable 
-                        key={treeItem.id}
-                        innerRef={contentEditable}
-                        html={name}
-                        disabled={ !(isEditing && contextTreeItem.id === treeItem.id) }
-                        className="content-editable"
-                        id={`tree-item-${treeItem.id}`}
-                        onChange={(e)=>handleChange(e)}
-                    /> -->
+                @contextmenu="onContextMenu"
+                @click="updateContextTreeItem(treeItem)"
+                :class="{'tree-item__name--active': contextTreeItem && treeItem.id === contextTreeItem.id}"
+                >
                     {{treeItem.data.name}}
             </div>
             <div class="tree-item__params">
@@ -40,13 +34,19 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: "Item",
-    props: ["treeItem", "tree"],
+    props: ["treeItem"],
     components: {
         
     },
+    computed: mapGetters(['tree', 'contextTreeItem']),
+    created() {
+        console.log("contextTreeItem", this.contextTreeItem);
+    },
     methods: {
+        ...mapActions(['updateContextTreeItem']),
         toggleExpanded() {
             this.treeItem.isExpanded = !this.treeItem.isExpanded;
         },

@@ -1,17 +1,42 @@
 
 const getters = {
-    tree: (state) => state.tree
+    tree: (state) => state.tree,
+    contextTreeItem: (state) => state.contextTreeItem,
 };
 
 const actions = {
-
+  updateContextTreeItem: ( { commit }, treeItem) => {
+    console.log("updateContextTreeItem")
+    commit('updateContextTreeItem', treeItem);
+  }
 };
 
 const mutations = {
-    
+  updateContextTreeItem: (state, treeItem) => state.contextTreeItem = treeItem,
 };
 
 const state = {
+    contextTreeItem: {
+      "id": "1",
+      "hasChildren": true,
+      "children": [
+        "4",
+        "_0"
+      ],
+      "isExpanded": false,
+      "parentId": "0",
+      "data": {
+        "name": "English",
+        "type": "D",
+        "dueItemsIds": [
+          "_0"
+        ],
+        "dueDecksIds": [
+          "4"
+        ],
+        "dueItemsCount": 3
+      }
+    },
     tree: {
         "rootId": "-1",
         "items": {

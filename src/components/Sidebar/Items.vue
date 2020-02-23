@@ -21,10 +21,10 @@ export default {
             root
         }
     },
-    computed: mapGetters(["tree"]),
     methods: {
         
     },
+    computed: mapGetters(["tree"]),
     created() {
         console.log("created tree", this.tree)
     }

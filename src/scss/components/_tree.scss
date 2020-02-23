@@ -50,11 +50,7 @@
         // so that stroke-blue-sharp doesn't shake the element
         border: 1px solid transparent;
         padding: 1px;
-        // overflow: hidden;
-    } 
-    &__link {
-        text-decoration: none;
-        user-select: none;
+
         &:focus, &--active {
             outline: none;
             font-size: 18px;
@@ -72,7 +68,13 @@
         &--active {
             @include font-blue-sharp;
         }
-    }
+        // overflow: hidden;
+    } 
+    // &__link {
+    //     text-decoration: none;
+    //     user-select: none;
+        
+    // }
 }
 
 .caret-container {
