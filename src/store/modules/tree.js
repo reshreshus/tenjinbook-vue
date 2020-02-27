@@ -1,4 +1,5 @@
 // import {getContextMutations} from '../../components/functional/contextMutations';
+import uuid from 'uuid';
 const getters = {
     tree: (state) => state.tree,
     contextTreeItem: (state) => state.contextTreeItem
@@ -9,15 +10,32 @@ const actions = {
     console.log("updateContextTreeItem")
     commit('updateContextTreeItem', treeItem);
   },
-  deleteEntry: ( {commit }, treeItemId) => {
-    console.log("deleteEntry")
-    commit('deleteEntry', treeItemId)
+  deleteItem: ( {commit }, treeItemId) => {
+    commit('deleteItem', treeItemId)
+  },
+  addCard: ( {commit }, parentTreeItemId) => {
+    console.log("addCard")
+    commit('addCard', parentTreeItemId)
   }
 };
 
 const mutations = {
   updateContextTreeItem: (state, treeItem) => state.contextTreeItem = treeItem,
-  deleteEntry: (state, treeItemId) => {
+  addCard: (state, parentId) => {
+    let id = uuid.v4();
+    let tree = state.tree
+    let treeItem = Object.assign({}, newDeckTreeItem);
+    treeItem.children = [];
+    treeItem.parentId = parentId;
+    treeItem.id = id;
+    treeItem.data.name = "new card";
+    treeItem.data.type = "f";
+    tree.items[parentId].children.push(id);
+    tree.items[parentId].hasChildren = true;
+    tree.items[parentId].isExpanded = true;
+    tree.items[id] = treeItem;
+  },
+  deleteItem: (state, treeItemId) => {
     const tree = state.tree;
     let parentId =  tree.items[treeItemId].parentId;
     delete tree.items[treeItemId];
@@ -29,6 +47,15 @@ const mutations = {
     }
   }
 };
+
+const newDeckTreeItem = {
+  hasChildren: false,
+  children: [],
+  isExpanded: false,
+  data: {
+
+  }
+}
 
 const state = {
     contextTreeItem: {

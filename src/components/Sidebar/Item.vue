@@ -24,7 +24,7 @@
                 {{treeItem.data.dueItemsCount}}
             </div>
         </div>
-        <div class="tree-item__children" v-bind:class="{'hide': !treeItem.isExpanded}">
+        <div class="tree-item__children" v-if="treeItem.isExpanded">
             <div v-bind:key="itemId" v-for="itemId in treeItem.children">  
                 <Item v-bind:treeItem="tree.items[itemId]" v-bind:tree="tree"/>
             </div>
@@ -46,7 +46,7 @@ export default {
         console.log("contextTreeItem", this.contextTreeItem);
     },
     methods: {
-        ...mapActions(['updateContextTreeItem', 'deleteEntry']),
+        ...mapActions(['updateContextTreeItem', 'deleteEntry', 'addCard']),
         toggleExpanded() {
             this.treeItem.isExpanded = !this.treeItem.isExpanded;
         },
@@ -55,6 +55,9 @@ export default {
             if (e.key === 'Delete') {
                 e.preventDefault();
                 this.deleteEntry(this.treeItem.id);
+            } else if (e.key === 'a') {
+                e.preventDefault();
+                this.addCard(this.treeItem.id);
             }
         },
         onContextMenu(e) {

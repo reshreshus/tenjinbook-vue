@@ -742,12 +742,3 @@ export let items = [{
 //         }
 //     ]
 // }
-
-// const newDeckTreeItem = {
-//     hasChildren: false,
-//     children: [],
-//     isExpanded: false,
-//     data: {
-
-//     }
-// }
