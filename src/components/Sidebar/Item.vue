@@ -14,7 +14,7 @@
             </span>
             <div tabindex="0" class="tree-item__name"
                 @keydown="onTreeItemKeyDown"
-                @contextmenu="onContextMenu"
+                @contextmenu.prevent="onContextMenu"
                 @click="updateContextTreeItem(treeItem)"
                 :class="{'tree-item__name--active': contextTreeItem && treeItem.id === contextTreeItem.id}"
                 >
@@ -61,7 +61,6 @@ export default {
             }
         },
         onContextMenu(e) {
-            e.preventDefault();
             console.log("onContextMenu")
             // updateContextTreeItemAndCleanup(treeItem, node);
             // openContextMenu(e)
